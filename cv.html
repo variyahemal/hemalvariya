@@ -6,41 +6,81 @@
   <title>CV | Hemal Variya</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body { font-family: 'Segoe UI', sans-serif; background: #f4f6f8; margin: 0; color: #333; }
-    header { background: #007bff; color: white; padding: 20px; text-align: center; }
-    header a { color: white; text-decoration: none; margin-right: 16px; }
-    .container { max-width: 1000px; margin: 20px auto; padding: 0 20px; }
-    .actions { display: flex; gap: 10px; margin: 12px 0 20px; }
-    .btn { background: #007bff; color: #fff; padding: 10px 16px; border-radius: 6px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
-    .viewer { width: 100%; height: 80vh; border: 1px solid #ddd; border-radius: 6px; background: #fff; }
-    .fallback { background: #fff3cd; border: 1px solid #ffeeba; color: #856404; padding: 12px; border-radius: 6px; }
-    footer { background: #007bff; color: white; text-align: center; padding: 12px; }
+    :root {
+      --primary:#007bff;
+      --secondary:#6610f2;
+      --bg:#f4f6f8;
+      --text:#333;
+    }
+    body { font-family:'Segoe UI',sans-serif; background:var(--bg); margin:0; color:var(--text); }
+    header {
+      background: linear-gradient(90deg,var(--primary),var(--secondary));
+      color:#fff; padding:16px 20px; display:flex; align-items:center; gap:14px; position:sticky; top:0; z-index:10;
+      box-shadow:0 4px 12px rgba(0,0,0,0.08);
+      animation: slideDown 500ms ease-out;
+    }
+    header a { color:#fff; text-decoration:none; font-weight:600; display:inline-flex; align-items:center; gap:8px; }
+    header .title { font-weight:700; letter-spacing:.2px; }
+    .container { max-width:1000px; margin:22px auto; padding:0 20px; }
+    .actions { display:flex; gap:12px; margin:10px 0 18px; }
+    .btn { background:var(--primary); color:#fff; padding:10px 16px; border-radius:10px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; box-shadow:0 6px 16px rgba(0,123,255,.25); transition: transform .2s ease, box-shadow .2s ease; }
+    .btn:hover { transform: translateY(-2px); box-shadow:0 10px 24px rgba(0,123,255,.35); }
+    .viewer-wrap { background:#fff; border:1px solid #e6e6e6; border-radius:12px; overflow:hidden; box-shadow:0 10px 24px rgba(0,0,0,.06); animation: fadeUp 420ms ease-out both; }
+    .viewer { width:100%; height:80vh; border:0; display:block; }
+    .fallback { background:#fff3cd; border:1px solid #ffeeba; color:#856404; padding:12px; border-radius:10px; margin-top:16px; }
+    footer { background: linear-gradient(90deg,var(--primary),var(--secondary)); color:white; text-align:center; padding:12px; margin-top:24px; }
+    @keyframes fadeUp { from { opacity:0; transform: translateY(8px);} to { opacity:1; transform: translateY(0);} }
+    @keyframes slideDown { from { transform: translateY(-12px); opacity:.0;} to { transform: translateY(0); opacity:1;} }
   </style>
 </head>
 <body>
   <header>
     <a href="index.html" title="Back to Home"><i class="fa fa-home"></i> Home</a>
-    <strong>Curriculum Vitae</strong>
+    <span class="title">Curriculum Vitae</span>
   </header>
+
   <div class="container">
     <div class="actions">
       <a class="btn" href="Hemal_Variya_CV.pdf" download title="Download CV"><i class="fa fa-download"></i> Download PDF</a>
       <a class="btn" href="Hemal_Variya_CV.pdf" target="_blank" rel="noopener noreferrer" title="Open in new tab"><i class="fa fa-up-right-from-square"></i> Open in Tab</a>
     </div>
 
-    <object class="viewer" data="Hemal_Variya_CV.pdf" type="application/pdf">
-      <div class="fallback">
-        <p>
-          Your browser doesn't support embedded PDFs or the file is missing.
-          You can <a href="Hemal_Variya_CV.pdf" download>download the CV</a> or
-          <a href="Hemal_Variya_CV.pdf" target="_blank" rel="noopener">open it in a new tab</a>.
-        </p>
-      </div>
-    </object>
+    <div class="viewer-wrap" id="viewerWrap" style="display:none;">
+      <iframe id="pdfFrame" class="viewer" title="Embedded CV"></iframe>
+    </div>
+
+    <div class="fallback" id="fallback" style="display:none;">
+      <p>
+        The embedded PDF can’t be displayed or the file is missing.
+        You can <a href="Hemal_Variya_CV.pdf" download>download the CV</a> or
+        <a href="Hemal_Variya_CV.pdf" target="_blank" rel="noopener">open it in a new tab</a>.
+      </p>
+    </div>
   </div>
 
   <footer>
     © 2025 Hemal Variya — CV
   </footer>
+
+  <script>
+    (function(){
+      const pdfPath = 'Hemal_Variya_CV.pdf';
+      const frame = document.getElementById('pdfFrame');
+      const wrap = document.getElementById('viewerWrap');
+      const fallback = document.getElementById('fallback');
+
+      // Try HEAD to confirm the PDF exists on the current origin
+      fetch(pdfPath, { method:'HEAD' }).then(res => {
+        if (res.ok) {
+          frame.src = pdfPath + '#toolbar=1&navpanes=0&scrollbar=1';
+          wrap.style.display = 'block';
+        } else {
+          fallback.style.display = 'block';
+        }
+      }).catch(() => {
+        fallback.style.display = 'block';
+      });
+    })();
+  </script>
 </body>
 </html>
