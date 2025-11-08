@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV | Hemal Variya</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background: #f4f6f8; margin: 0; color: #333; }
+    header { background: #007bff; color: white; padding: 20px; text-align: center; }
+    header a { color: white; text-decoration: none; margin-right: 16px; }
+    .container { max-width: 1000px; margin: 20px auto; padding: 0 20px; }
+    .actions { display: flex; gap: 10px; margin: 12px 0 20px; }
+    .btn { background: #007bff; color: #fff; padding: 10px 16px; border-radius: 6px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+    .viewer { width: 100%; height: 80vh; border: 1px solid #ddd; border-radius: 6px; background: #fff; }
+    .fallback { background: #fff3cd; border: 1px solid #ffeeba; color: #856404; padding: 12px; border-radius: 6px; }
+    footer { background: #007bff; color: white; text-align: center; padding: 12px; }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" title="Back to Home"><i class="fa fa-home"></i> Home</a>
+    <strong>Curriculum Vitae</strong>
+  </header>
+  <div class="container">
+    <div class="actions">
+      <a class="btn" href="Hemal_Variya_CV.pdf" download title="Download CV"><i class="fa fa-download"></i> Download PDF</a>
+      <a class="btn" href="Hemal_Variya_CV.pdf" target="_blank" rel="noopener noreferrer" title="Open in new tab"><i class="fa fa-up-right-from-square"></i> Open in Tab</a>
+    </div>
+
+    <object class="viewer" data="Hemal_Variya_CV.pdf" type="application/pdf">
+      <div class="fallback">
+        <p>
+          Your browser doesn't support embedded PDFs or the file is missing.
+          You can <a href="Hemal_Variya_CV.pdf" download>download the CV</a> or
+          <a href="Hemal_Variya_CV.pdf" target="_blank" rel="noopener">open it in a new tab</a>.
+        </p>
+      </div>
+    </object>
+  </div>
+
+  <footer>
+    © 2025 Hemal Variya — CV
+  </footer>
+</body>
+</html>
