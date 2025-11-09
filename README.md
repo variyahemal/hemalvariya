@@ -2,11 +2,7 @@
 
 Modern, lightweight portfolio hosted on GitHub Pages with an embedded CV.
 
-## Live Links
-
-- Home: https://variyahemal.github.io/ (if configured as a user site)
-- Project site (alternative): https://variyahemal.github.io/hemalvariya.github.io/
-- CV page: Append `cv.html` to the base, e.g. `.../cv.html`
+## Live Links: https://variyahemal.github.io/hemalvariya/
 
 ## Features
 
@@ -21,21 +17,3 @@ Place your file at the repository root with this exact name:
 
 - `Hemal_Variya_CV.pdf`
 
-Then commit and push.
-
-## Local Preview
-
-```bash
-python -m http.server 8000
-# Visit http://localhost:8000/
-```
-
-## Deploy
-
-```bash
-git add .
-git commit -m "Update UI and CV iframe"
-git push
-```
-
-Ensure GitHub Pages is enabled in the repository settings. For a user site, the repo name must match your username: `variyahemal.github.io`.
